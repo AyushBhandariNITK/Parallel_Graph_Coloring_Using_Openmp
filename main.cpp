@@ -85,22 +85,20 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	end = std::chrono::high_resolution_clock::now();
-	std::cout << "Graph file read [" << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms]" << std::endl
-		<< "Starting graph coloring procedure" << std::endl;
+	cout << "Graph file read [" << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms]"
+	 	<<endl<< "Starting graph coloring procedure" << endl;
 	GraphColoring coloring(row_ptr, col_ind, nov);
 	begin = std::chrono::high_resolution_clock::now();
 	coloring.perform_coloring();
 	end = std::chrono::high_resolution_clock::now();
-
-	std::cout << "Coloring finished [" << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms]" << std::endl
+	cout << "Coloring finished [" << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms]" << std::endl
 		<< "Starting accuracy computation procedure" << std::endl;
 	double accuracy = coloring.accuracy()*100;	
 	end = std::chrono::high_resolution_clock::now();
 	int result= std::chrono::duration_cast<std::chrono::milliseconds>(end - initial).count();
-	std::cout << "Coloring accuracy: " << accuracy << "%" << std::endl << "Total time: "
-		<< result << " ms" << std::endl;
+	cout<< "Coloring accuracy: " << accuracy << "%" <<endl << "Total time: "<< result << " ms" <<endl;
 	Store_Result(result,values);
-	std::cout << std::endl;
+	cout <<endl;
 
 	return 0;
 }
